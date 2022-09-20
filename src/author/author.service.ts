@@ -1,4 +1,7 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
+import { AxiosResponse } from 'axios';
+import { Observable } from 'rxjs';
 import { Author } from './models/author.model';
 
 @Injectable()
@@ -31,6 +34,8 @@ export class AuthorService {
     },
   ] as Author[];
 
+  constructor(private readonly httpService: HttpService) {}
+
   async create(data: Author) {
     console.log(`AuthService create ${data}`);
 
@@ -44,6 +49,16 @@ export class AuthorService {
   }
 
   async findAll(): Promise<Author[]> {
+    const response = this.httpService.get('http://localhost:3000/cats');
+    console.log(JSON.stringify(response));
     return this.dummy;
   }
+
+  // async axiosTest(): Observable<AxiosResponse<Author[]>> {
+  //   return this.httpService.get('http://localhost:3000/cats');
+  // }
+
+  // async axiosTest(): AxiosResponse<Author[]> {
+  //   return this.httpService.get('http://localhost:3000/cats');
+  // }
 }
