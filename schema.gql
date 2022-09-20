@@ -1,0 +1,17 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+author
+"""
+type Author {
+  id: ID!
+  firstName: String
+  lastName: String
+}
+
+type Query {
+  author(id: String!): Author!
+  authors: [Author!]!
+}
